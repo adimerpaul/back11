@@ -1,4 +1,5 @@
 import 'package:back11/pages/MyHomePage.dart';
+import 'package:back11/services/backgroundService.dart';
 import 'package:back11/services/notificationServices.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -7,7 +8,7 @@ import '../globals.dart' as globals;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // await initializeService();
+  await initializeService();
   await Permission.notification.request();
   // await Permission.camera.request();
   await initNotifications();
@@ -25,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    socketInit();
+    // socketInit();
   }
   socketInit() {
     print('socketInit');
