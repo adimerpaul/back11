@@ -1,9 +1,16 @@
 import 'package:back11/pages/MyHomePage.dart';
+import 'package:back11/services/notificationServices.dart';
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 import '../globals.dart' as globals;
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // await initializeService();
+  await Permission.notification.request();
+  // await Permission.camera.request();
+  await initNotifications();
   runApp(const MyApp());
 }
 
@@ -32,7 +39,7 @@ class _MyAppState extends State<MyApp> {
     });
     globals.socket.on('chat message', (data) {
       print(data);
-      // showNotification(data, 0);
+      showNotification(data, 0);
     });
   }
   @override
